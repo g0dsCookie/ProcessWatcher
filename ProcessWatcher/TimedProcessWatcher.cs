@@ -10,10 +10,10 @@ namespace CookieProjects.ProcessWatcher
 {
     /// <summary>
     /// ProcessWatcher implemented with a <see cref="Timer"/>.
-    /// 
+    ///
     /// This may miss some short running processes but don't
     /// require admin rights and should serve most purposes.
-    /// 
+    ///
     /// If you need those short running processes <seealso cref="WmiProcessWatcher"/>.
     /// </summary>
     public class TimedProcessWatcher : IProcessWatcher
@@ -60,7 +60,7 @@ namespace CookieProjects.ProcessWatcher
         {
             var oldCache = this.ProcessCache;
             this.UpdateProcessCache();
-            var (added, deleted) = oldCache.GetFullDifferenceTo(this.ProcessCache);
+            var (deleted, added) = oldCache.GetFullDifferenceTo(this.ProcessCache);
 
             foreach (var add in added)
                 ProcessStarted?.Invoke(this, new ProcessEventArgs(add.Value));

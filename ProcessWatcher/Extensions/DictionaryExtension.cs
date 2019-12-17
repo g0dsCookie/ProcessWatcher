@@ -4,9 +4,9 @@ namespace CookieProjects.ProcessWatcher.Extensions
 {
     internal static class DictionaryExtension
     {
-        internal static (IEnumerable<KeyValuePair<K, V>> added, IEnumerable<KeyValuePair<K, V>> deleted)
+        internal static (IEnumerable<KeyValuePair<K, V>> deleted, IEnumerable<KeyValuePair<K, V>> added)
             GetFullDifferenceTo<K, V>(this IDictionary<K, V> left, IDictionary<K, V> right) =>
-            (added: left.GetDifferenceTo(right), deleted: right.GetDifferenceTo(left));
+            (deleted: left.GetDifferenceTo(right), added: right.GetDifferenceTo(left));
 
         internal static IEnumerable<KeyValuePair<K, V>> GetDifferenceTo<K, V>(this IDictionary<K, V> left, IDictionary<K, V> right)
         {
