@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProcessWatcher</name>
+    </assembly>
+    <members>
+        <member name="T:CookieProjects.ProcessWatcher.Events.ProcessEventHandler">
+            <summary>
+            Represents the method that will handle the process event.
+            </summary>
+            <param name="sender">The sender of this event.</param>
+            <param name="e">The event arguments.</param>
+        </member>
+        <member name="T:CookieProjects.ProcessWatcher.Events.ProcessEventArgs">
+            <summary>
+            Represents a class containing all relevant process event data.
+            </summary>
+        </member>
+        <member name="P:CookieProjects.ProcessWatcher.Events.ProcessEventArgs.ProcessName">
+            <summary>
+            The name of the process catched by the event.
+            </summary>
+        </member>
+        <member name="P:CookieProjects.ProcessWatcher.Events.ProcessEventArgs.ProcessID">
+            <summary>
+            The id of the process catched by the event.
+            </summary>
+        </member>
+        <member name="P:CookieProjects.ProcessWatcher.Events.ProcessEventArgs.Process">
+            <summary>
+            The actual process object catched by the event.
+            
+            Warning: This property may be <c>null</c> depending on
+            used Watcher or situation. Use <see cref="P:CookieProjects.ProcessWatcher.Events.ProcessEventArgs.ProcessName"/>
+            or <see cref="P:CookieProjects.ProcessWatcher.Events.ProcessEventArgs.ProcessID"/> instead.
+            </summary>
+        </member>
+        <member name="M:CookieProjects.ProcessWatcher.Events.ProcessEventArgs.#ctor(System.String,System.UInt32)">
+            <summary>
+            Construct a new ProcessEventArgs with <see cref="P:CookieProjects.ProcessWatcher.Events.ProcessEventArgs.Process"/> unset.
+            </summary>
+            <param name="processName">The name of the catched process.</param>
+            <param name="processId">The id of the catched process.</param>
+        </member>
+        <member name="M:CookieProjects.ProcessWatcher.Events.ProcessEventArgs.#ctor(System.Diagnostics.Process)">
+            <summary>
+            Construct a new ProcessEventArgs.
+            </summary>
+            <param name="process">The catched process.</param>
+        </member>
+        <member name="T:CookieProjects.ProcessWatcher.IProcessWatcher">
+            <summary>
+            Defines a basic ProcessWatcher.
+            </summary>
+        </member>
+        <member name="E:CookieProjects.ProcessWatcher.IProcessWatcher.ProcessStarted">
+            <summary>
+            Event when a new process has been started.
+            </summary>
+        </member>
+        <member name="E:CookieProjects.ProcessWatcher.IProcessWatcher.ProcessStopped">
+            <summary>
+            Event when a process has stopped.
+            </summary>
+        </member>
+        <member name="M:CookieProjects.ProcessWatcher.IProcessWatcher.Start">
+            <summary>
+            Start the watcher.
+            </summary>
+        </member>
+        <member name="M:CookieProjects.ProcessWatcher.IProcessWatcher.Stop">
+            <summary>
+            Stop the watcher.
+            </summary>
+        </member>
+        <member name="T:CookieProjects.ProcessWatcher.ProcessCacheEntry">
+            <summary>
+            Simple struct to composite processname with it's process id
+            used for <see cref="T:System.Collections.Generic.HashSet`1"/>
+            or <see cref="T:System.Collections.Generic.Dictionary`2"/>.
+            </summary>
+        </member>
+        <member name="T:CookieProjects.ProcessWatcher.TimedProcessWatcher">
+            <summary>
+            ProcessWatcher implemented with a <see cref="F:CookieProjects.ProcessWatcher.TimedProcessWatcher.Timer"/>.
+            
+            This may miss some short running processes but don't
+            require admin rights and should serve most purposes.
+            
+            If you need those short running processes <seealso cref="T:CookieProjects.ProcessWatcher.WmiProcessWatcher"/>.
+            </summary>
+        </member>
+        <member name="E:CookieProjects.ProcessWatcher.TimedProcessWatcher.ProcessStarted">
+            <inheritdoc/>
+        </member>
+        <member name="E:CookieProjects.ProcessWatcher.TimedProcessWatcher.ProcessStopped">
+            <inheritdoc/>
+        </member>
+        <member name="M:CookieProjects.ProcessWatcher.TimedProcessWatcher.#ctor(System.Double)">
+            <summary>
+            Construct a new TimedProcessWatcher.
+            </summary>
+            <param name="interval">Interval to scan for started/stopped processes.</param>
+        </member>
+        <member name="M:CookieProjects.ProcessWatcher.TimedProcessWatcher.Start">
+            <inheritdoc/>
+        </member>
+        <member name="M:CookieProjects.ProcessWatcher.TimedProcessWatcher.Stop">
+            <inheritdoc/>
+        </member>
+        <member name="T:CookieProjects.ProcessWatcher.WmiProcessWatcher">
+            <summary>
+            ProcessWatcher implemented with <see cref="T:System.Management.ManagementEventWatcher"/>
+            using WMI Queries.
+            
+            This ProcessWatcher will never set <see cref="P:CookieProjects.ProcessWatcher.Events.ProcessEventArgs.Process"/>
+            to any value.
+            
+            This class requires admin rights but can also catch short running
+            processes. However short running processes may not be reported 
+            in-order. For example a process may be reported as stopped before
+            it's getting reported as started.
+            
+            If you don't want to use admin rights and don't care
+            about short running processes <seealso cref="T:CookieProjects.ProcessWatcher.TimedProcessWatcher"/>.
+            </summary>
+        </member>
+        <member name="E:CookieProjects.ProcessWatcher.WmiProcessWatcher.ProcessStarted">
+            <inheritdoc/>
+        </member>
+        <member name="E:CookieProjects.ProcessWatcher.WmiProcessWatcher.ProcessStopped">
+            <inheritdoc/>
+        </member>
+        <member name="M:CookieProjects.ProcessWatcher.WmiProcessWatcher.Start">
+            <inheritdoc/>
+        </member>
+        <member name="M:CookieProjects.ProcessWatcher.WmiProcessWatcher.Stop">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>
