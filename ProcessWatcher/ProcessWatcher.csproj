@@ -3,6 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>CookieProjects.ProcessWatcher</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>g0dsCookie</Authors>
+    <Company>CookieProjects</Company>
+    <Copyright>CookieProjects</Copyright>
+    <Description>This library provides some classes that help you to watch
+for started/stopped processes.</Description>
+    <PackageLicenseFile></PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/g0dsCookie/ProcessWatcher</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/g0dsCookie/ProcessWatcher</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>cookieprojects process watcher</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
